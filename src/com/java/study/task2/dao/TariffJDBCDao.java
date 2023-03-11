@@ -117,19 +117,6 @@ public class TariffJDBCDao implements TariffDAO {
         }
     }
 
-    private int getTariffId(String name, Connection connection){
-        try {
-            PreparedStatement statement = connection.prepareStatement("SELECT id FROM tariff where name = ?");
-            statement.setString(1, name);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()){
-                return resultSet.getInt(1);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return -1;
-    }
     private Connection getConnection(){
         Connection connection = null;
         try {
